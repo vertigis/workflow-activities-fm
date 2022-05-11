@@ -1,7 +1,7 @@
 # VertiGIS FM Activities
 
 [![CI/CD](https://github.com/geocortex/workflow-activities-fm/workflows/CI/CD/badge.svg)](https://github.com/geocortex/workflow-activities-fm/actions)
-[![npm](https://img.shields.io/npm/v/@geocortex/workflow-activities-fm)](https://www.npmjs.com/package/@vertigis/workflow-activities-fm)
+[![npm](https://img.shields.io/npm/v/@vertigis/workflow-activities-fm)](https://www.npmjs.com/package/@vertigis/workflow-activities-fm)
 
 This project contains activities for interacting with the [VertiGIS FM](https://prooffice.vertigis.com/en/) OData services in a [VertiGIS Studio Workflow](https://www.vertigisstudio.com/products/vertigis-studio-workflow/).
 

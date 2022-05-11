@@ -64,7 +64,7 @@ interface GetODataCollectionInputs {
 /** An interface that defines the outputs of the activity. */
 interface GetODataCollectionOutputs {
     /**
-     * @description The result of the activity.
+     * @description The OData collection result.
      */
     result: {
         "odata.metadata": string;

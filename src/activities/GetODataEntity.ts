@@ -44,7 +44,7 @@ interface GetODataEntityInputs {
 /** An interface that defines the outputs of the activity. */
 interface GetODataEntityOutputs {
     /**
-     * @description The result of the activity.
+     * @description The OData entity result.
      */
     result: {
         "odata.metadata": string;

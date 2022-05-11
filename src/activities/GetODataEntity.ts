@@ -29,6 +29,9 @@ interface GetODataEntityInputs {
     | "OData/Facility/MaintenableObject/GeoMan.Facilities.FacilityObject"
     | "OData/Facility/FacilityObjectOrder"
     | "OData/Facility/Person"
+    | "OData/ServiceDesk/Status"
+    | "OData/ServiceDesk/Ticket"
+    | "OData/ServiceDesk/Type"
     | string;
 
     /**

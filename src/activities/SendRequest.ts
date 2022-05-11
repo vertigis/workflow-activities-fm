@@ -21,7 +21,10 @@ export interface SendRequestInputs {
      * @required
      */
     path:
-    | "/OData/Devices/RepairType"
+    | "OData/Devices/RepairType"
+    | "OData/ServiceDesk/Status"
+    | "OData/ServiceDesk/Ticket"
+    | "OData/ServiceDesk/Type"
     | string;
 
     /**

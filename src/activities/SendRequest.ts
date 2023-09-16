@@ -63,7 +63,7 @@ interface SendRequestOutputs {
  * @displayName Send VertiGIS FM Request
  * @description Sends a request to the VertiGIS FM API.
  * @clientOnly
- * @unsupportedApps GMV
+ * @supportedApps EXB, GWV, GVH, WAB
  */
 export default class SendRequest implements IActivityHandler {
     async execute(

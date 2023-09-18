@@ -59,7 +59,7 @@ interface GetODataEntityOutputs {
  * @category VertiGIS FM
  * @description Sends an OData request to VertiGIS FM to fetch a single entity.
  * @clientOnly
- * @unsupportedApps GMV
+ * @supportedApps EXB, GWV, GVH, WAB
  */
 export default class GetODataEntity implements IActivityHandler {
     async execute(inputs: GetODataEntityInputs): Promise<GetODataEntityOutputs> {

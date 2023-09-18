@@ -36,7 +36,7 @@ interface CreateServiceOutputs {
  * @category VertiGIS FM
  * @description Creates an authenticated connection to a VertiGIS FM service that can be used with other VertiGIS FM activities.
  * @clientOnly
- * @unsupportedApps GMV
+ * @supportedApps EXB, GWV, GVH, WAB
  */
 export default class CreateService implements IActivityHandler {
     async execute(inputs: CreateServiceInputs): Promise<CreateServiceOutputs> {

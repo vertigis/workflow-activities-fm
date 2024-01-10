@@ -29,7 +29,7 @@
     "dependencies": {},
     "devDependencies": {
         "@geocortex/workflow": "5.27.1",
-        "@vertigis/workflow-sdk": "2.0.5",
+        "@vertigis/workflow-sdk": "4.1.0",
         "typescript": "^4.7.4"
     },
     "browserslist": [

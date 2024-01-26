@@ -1,9 +1,11 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime/IActivityHandler";
+import type { IActivityHandler } from "@vertigis/workflow/IActivityHandler";
 import { FMService } from "../FMService";
 import { httpRequest } from "../request";
 
 /** An interface that defines the inputs of the activity. */
 export interface SendRequestInputs {
+    /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+
     /**
      * @description The VertiGIS FM API Service.
      * @required
@@ -21,11 +23,11 @@ export interface SendRequestInputs {
      * @required
      */
     path:
-    | "OData/Devices/RepairType"
-    | "OData/ServiceDesk/Status"
-    | "OData/ServiceDesk/Ticket"
-    | "OData/ServiceDesk/Type"
-    | string;
+        | "OData/Devices/RepairType"
+        | "OData/ServiceDesk/Status"
+        | "OData/ServiceDesk/Ticket"
+        | "OData/ServiceDesk/Type"
+        | string;
 
     /**
      * @description The query string parameters to send on the request.
@@ -47,6 +49,8 @@ export interface SendRequestInputs {
     headers?: {
         [key: string]: any;
     };
+
+    /* eslint-enable @typescript-eslint/no-redundant-type-constituents */
 }
 
 /** An interface that defines the outputs of the activity. */
@@ -66,9 +70,7 @@ interface SendRequestOutputs {
  * @supportedApps EXB, GWV, GVH, WAB
  */
 export default class SendRequest implements IActivityHandler {
-    async execute(
-        inputs: SendRequestInputs
-    ): Promise<SendRequestOutputs> {
+    async execute(inputs: SendRequestInputs): Promise<SendRequestOutputs> {
         const { body, headers, method, path, query, service } = inputs;
         if (!service) {
             throw new Error("service is required");
@@ -86,7 +88,7 @@ export default class SendRequest implements IActivityHandler {
             path,
             query,
             body,
-            headers
+            headers,
         );
 
         return {

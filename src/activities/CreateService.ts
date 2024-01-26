@@ -1,4 +1,4 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow/IActivityHandler";
 import { FMService } from "../FMService";
 import { checkResponse } from "../request";
 
@@ -71,7 +71,8 @@ export default class CreateService implements IActivityHandler {
                     password,
                     createPersistentCookie: false,
                 }),
-            });
+            },
+        );
 
         await checkResponse(response);
 

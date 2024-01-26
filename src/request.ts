@@ -7,7 +7,7 @@ export async function get<T = any>(
     service: FMService,
     path: string,
     query?: QueryString,
-    headers?: Record<string, any>
+    headers?: Record<string, any>,
 ): Promise<T> {
     return httpRequest<T>(service, "GET", path, query, undefined, headers);
 }
@@ -17,7 +17,7 @@ export async function post<T = any>(
     path: string,
     query?: QueryString,
     body?: Record<string, any>,
-    headers?: Record<string, any>
+    headers?: Record<string, any>,
 ): Promise<T> {
     return httpRequest<T>(service, "POST", path, query, body, headers);
 }
@@ -27,7 +27,7 @@ export function put<T = any>(
     path: string,
     query?: QueryString,
     body?: Record<string, any>,
-    headers?: Record<string, any>
+    headers?: Record<string, any>,
 ): Promise<T> {
     return httpRequest<T>(service, "PUT", path, query, body, headers);
 }
@@ -37,7 +37,7 @@ export function patch<T = any>(
     path: string,
     query?: QueryString,
     body?: Record<string, any>,
-    headers?: Record<string, any>
+    headers?: Record<string, any>,
 ): Promise<T> {
     return httpRequest<T>(service, "PATCH", path, query, body, headers);
 }
@@ -47,7 +47,7 @@ export async function httpDelete<T = any>(
     path: string,
     query?: QueryString,
     body?: Record<string, any>,
-    headers?: Record<string, any>
+    headers?: Record<string, any>,
 ): Promise<T> {
     return httpRequest<T>(service, "DELETE", path, query, body, headers);
 }
@@ -58,7 +58,7 @@ export async function httpRequest<T = any>(
     path: string,
     query?: QueryString,
     body?: Record<string, any>,
-    headers?: Record<string, any>
+    headers?: Record<string, any>,
 ): Promise<T> {
     if (!service.url) {
         throw new Error("url is required");
@@ -89,7 +89,7 @@ export async function httpRequest<T = any>(
 
 export async function checkResponse(
     response: Response,
-    message?: string
+    message?: string,
 ): Promise<void> {
     if (!response.ok) {
         // Try to read the error body of the response
@@ -108,7 +108,7 @@ export async function checkResponse(
 }
 
 function objectToQueryString(
-    data?: Record<string, string | number | boolean | null | undefined>
+    data?: Record<string, string | number | boolean | null | undefined>,
 ): string {
     if (!data) {
         return "";
@@ -118,9 +118,7 @@ function objectToQueryString(
             const value = data[k];
             const valueToEncode =
                 value === undefined || value === null ? "" : value;
-            return `${encodeURIComponent(k)}=${encodeURIComponent(
-                valueToEncode
-            )}`;
+            return `${encodeURIComponent(k)}=${encodeURIComponent(valueToEncode)}`;
         })
         .join("&");
 }

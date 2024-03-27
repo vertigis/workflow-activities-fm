@@ -5,7 +5,7 @@ export class FMRequestError extends Error {
     constructor(
         statusCode: number,
         error?: Record<string, any>,
-        message?: string
+        message?: string,
     ) {
         super(message || "VertiGIS FM request failed.");
         this.error = error;

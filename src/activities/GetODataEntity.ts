@@ -1,9 +1,11 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow/IActivityHandler";
 import { FMService } from "../FMService";
 import { get } from "../request";
 
 /** An interface that defines the inputs of the activity. */
 interface GetODataEntityInputs {
+    /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+
     /**
      * @description The VertiGIS FM Service.
      * @required
@@ -15,30 +17,32 @@ interface GetODataEntityInputs {
      * @required
      */
     path:
-    | "OData/Devices/AssetState"
-    | "OData/Devices/Device"
-    | "OData/Devices/Equipment"
-    | "OData/Devices/MaintenableObjectType"
-    | "OData/Devices/Order"
-    | "OData/Devices/RepairType"
-    | "OData/Devices/ServiceLevel"
-    | "OData/Devices/Trade"
-    | "OData/Facility/Document"
-    | "OData/Facility/FaultNoteType"
-    | "OData/Facility/MaintenableObject/Bmm.Equi.Equipment"
-    | "OData/Facility/MaintenableObject/GeoMan.Facilities.FacilityObject"
-    | "OData/Facility/FacilityObjectOrder"
-    | "OData/Facility/Person"
-    | "OData/ServiceDesk/Status"
-    | "OData/ServiceDesk/Ticket"
-    | "OData/ServiceDesk/Type"
-    | string;
+        | "OData/Devices/AssetState"
+        | "OData/Devices/Device"
+        | "OData/Devices/Equipment"
+        | "OData/Devices/MaintenableObjectType"
+        | "OData/Devices/Order"
+        | "OData/Devices/RepairType"
+        | "OData/Devices/ServiceLevel"
+        | "OData/Devices/Trade"
+        | "OData/Facility/Document"
+        | "OData/Facility/FaultNoteType"
+        | "OData/Facility/MaintenableObject/Bmm.Equi.Equipment"
+        | "OData/Facility/MaintenableObject/GeoMan.Facilities.FacilityObject"
+        | "OData/Facility/FacilityObjectOrder"
+        | "OData/Facility/Person"
+        | "OData/ServiceDesk/Status"
+        | "OData/ServiceDesk/Ticket"
+        | "OData/ServiceDesk/Type"
+        | string;
 
     /**
      * @description The OData entity ID.
      * @required
      */
     id: string | number;
+
+    /* eslint-enable @typescript-eslint/no-redundant-type-constituents */
 }
 
 /** An interface that defines the outputs of the activity. */
@@ -62,7 +66,9 @@ interface GetODataEntityOutputs {
  * @supportedApps EXB, GWV, GVH, WAB
  */
 export default class GetODataEntity implements IActivityHandler {
-    async execute(inputs: GetODataEntityInputs): Promise<GetODataEntityOutputs> {
+    async execute(
+        inputs: GetODataEntityInputs,
+    ): Promise<GetODataEntityOutputs> {
         const { id, path, service } = inputs;
         if (!service) {
             throw new Error("service is required");
@@ -71,9 +77,12 @@ export default class GetODataEntity implements IActivityHandler {
             throw new Error("id is required");
         }
 
-        const delimiter = typeof id === "string" ? "'" : ""
+        const delimiter = typeof id === "string" ? "'" : "";
 
-        const response = await get(service, `${path}(${delimiter}${id}${delimiter})`);
+        const response = await get(
+            service,
+            `${path}(${delimiter}${id}${delimiter})`,
+        );
 
         return {
             result: response,

@@ -1,9 +1,11 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow/IActivityHandler";
 import { FMService } from "../FMService";
 import { get } from "../request";
 
 /** An interface that defines the inputs of the activity. */
 interface GetODataCollectionInputs {
+    /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+
     /**
      * @description The VertiGIS FM Service.
      * @required
@@ -15,25 +17,25 @@ interface GetODataCollectionInputs {
      * @required
      */
     path:
-    | "OData/Devices/AssetState"
-    | "OData/Devices/Device"
-    | "OData/Devices/Equipment"
-    | "OData/Devices/MaintenableObjectType"
-    | "OData/Devices/Order"
-    | "OData/Devices/RepairType"
-    | "OData/Devices/ServiceLevel"
-    | "OData/Devices/Trade"
-    | "OData/Facility/Document"
-    | "OData/Facility/FaultNoteType"
-    | "OData/Facility/MaintenableObject/Bmm.Equi.Equipment"
-    | "OData/Facility/MaintenableObject/GeoMan.Facilities.FacilityObject"
-    | "OData/Facility/FacilityObjectOrder"
-    | "OData/Facility/Person"
-    | "OData/ServiceDesk/Status"
-    | "OData/ServiceDesk/Ticket"
-    | "OData/ServiceDesk/Type"
-    | "ODataList/Contracts/Contract"
-    | string;
+        | "OData/Devices/AssetState"
+        | "OData/Devices/Device"
+        | "OData/Devices/Equipment"
+        | "OData/Devices/MaintenableObjectType"
+        | "OData/Devices/Order"
+        | "OData/Devices/RepairType"
+        | "OData/Devices/ServiceLevel"
+        | "OData/Devices/Trade"
+        | "OData/Facility/Document"
+        | "OData/Facility/FaultNoteType"
+        | "OData/Facility/MaintenableObject/Bmm.Equi.Equipment"
+        | "OData/Facility/MaintenableObject/GeoMan.Facilities.FacilityObject"
+        | "OData/Facility/FacilityObjectOrder"
+        | "OData/Facility/Person"
+        | "OData/ServiceDesk/Status"
+        | "OData/ServiceDesk/Ticket"
+        | "OData/ServiceDesk/Type"
+        | "ODataList/Contracts/Contract"
+        | string;
 
     /**
      * @description The OData filter to apply to the collection of resources.
@@ -59,6 +61,8 @@ interface GetODataCollectionInputs {
      * @description The number of items to skip.
      */
     skip?: string;
+
+    /* eslint-enable @typescript-eslint/no-redundant-type-constituents */
 }
 
 /** An interface that defines the outputs of the activity. */
@@ -71,7 +75,7 @@ interface GetODataCollectionOutputs {
         value: {
             "odata.id": string;
             [key: string]: any;
-        }[]
+        }[];
     };
 }
 
@@ -84,7 +88,9 @@ interface GetODataCollectionOutputs {
  * @supportedApps EXB, GWV, GVH, WAB
  */
 export default class GetODataCollection implements IActivityHandler {
-    async execute(inputs: GetODataCollectionInputs): Promise<GetODataCollectionOutputs> {
+    async execute(
+        inputs: GetODataCollectionInputs,
+    ): Promise<GetODataCollectionOutputs> {
         const { expand, filter, orderBy, path, service, skip, top } = inputs;
         if (!service) {
             throw new Error("service is required");
@@ -94,11 +100,11 @@ export default class GetODataCollection implements IActivityHandler {
         }
 
         const response = await get(service, `${path}`, {
-            ...(expand ? { "$expand": expand } : undefined),
-            ...(filter ? { "$filter": filter } : undefined),
-            ...(orderBy ? { "$orderby": orderBy } : undefined),
-            ...(skip ? { "$skip": skip } : undefined),
-            ...(top ? { "$top": top } : undefined),
+            ...(expand ? { $expand: expand } : undefined),
+            ...(filter ? { $filter: filter } : undefined),
+            ...(orderBy ? { $orderby: orderBy } : undefined),
+            ...(skip ? { $skip: skip } : undefined),
+            ...(top ? { $top: top } : undefined),
         });
 
         return {
